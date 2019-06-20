@@ -14,7 +14,7 @@ Promise = require('bluebird'); // eslint-disable-line no-global-assign
 mongoose.Promise = Promise;
 
 // connect to mongo db
-const mongoUri = config.mongo.localhost || config.mongo.mlabHost;
+const mongoUri = config.mongo.host;
 // const port = process.env.PORT || config.port;
 mongoose.connect(mongoUri,
   {
