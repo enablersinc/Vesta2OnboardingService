@@ -37,6 +37,8 @@ const config = {
   jwtSecret: envVars.JWT_SECRET,
   mongo: {
     host: envVars.MONGO_HOST,
+    MONGO_HOST: envVars.MONGO_LOCAL,
+    mlabHost:  envVars.MONGO_MLAB,
     port: envVars.MONGO_PORT
   }
 };
