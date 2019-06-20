@@ -14,7 +14,8 @@ Promise = require('bluebird'); // eslint-disable-line no-global-assign
 mongoose.Promise = Promise;
 
 // connect to mongo db
-const mongoUri = config.mongo.host;
+const mongoUri = config.mongo.localhost || config.mongo.mlabHost;
+// const port = process.env.PORT || config.port;
 mongoose.connect(mongoUri,
   {
     useMongoClient: true,
@@ -22,7 +23,7 @@ mongoose.connect(mongoUri,
     promiseLibrary: global.Promise
   }
 )
-.then(() => console.log('Server connected to MongoDB...'))
+.then(() => console.log(`Server connected to: ${mongoUri}`))
 .catch(err => console.error('Could not connect to MongoDB...'));
 mongoose.connection.on('error', () => {
   throw new Error(`unable to connect to database: ${mongoUri}`);
@@ -38,9 +39,10 @@ if (config.mongooseDebug) {
 // module.parent check is required to support mocha watch
 // src: https://github.com/mochajs/mocha/issues/1912
 if (!module.parent) {
+  app.set( 'port', ( process.env.PORT || config.port ));
   // listen on port config.port
-  app.listen(config.port, () => {
-    console.info(`server started on port ${config.port} (${config.env})`); // eslint-disable-line no-console
+  app.listen(app.get( 'port' ), () => {
+    console.info(`server started on port ${app.get( 'port' )} (${config.env})`); // eslint-disable-line no-console
   });
 }
 
