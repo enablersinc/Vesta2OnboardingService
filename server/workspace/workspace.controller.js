@@ -17,7 +17,7 @@ async function create(workspaceParam) {
     name: workspaceParam.name
   });
 
-  // save feedback
+  // save workspace
   await workspace.save();
   return workspace;
 }
@@ -34,7 +34,7 @@ async function getById(id) {
 async function update(id, workspaceParam) {
   const workspace = await WorkSpace.findById(id);
 
-  // copy priceParam properties to price
+  // copy
   Object.assign(workspace, workspaceParam);
 
   await workspace.save();

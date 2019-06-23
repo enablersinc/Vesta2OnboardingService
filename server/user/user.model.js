@@ -16,11 +16,6 @@ const UserSchema = new mongoose.Schema({
   location: {
     type: String
   },
-  domains: [
-    {
-      name: String
-    }
-  ],
   createdAt: {
     type: Date,
     default: Date.now
