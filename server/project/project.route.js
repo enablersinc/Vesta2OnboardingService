@@ -16,7 +16,7 @@ function submit(req, res, next) {
     .then(url =>
       url
         ? res.status(200).json(url)
-        : res.status(403).json({ message: 'Request failed please create your project again' })
+        : res.status(403).json({ message: 'Request failed, please create your project again' })
     )
     .catch(err => next(err));
 }

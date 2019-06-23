@@ -11,7 +11,7 @@ module.exports = {
 };
 
 async function create(projectParam) {
-  if (projectParam.workspace.match(/^[0-9a-fA-F]{24}$/)) {
+  if (projectParam.workspace) {
     const workspace = await WorkSpace.findById(projectParam.workspace).exec();
     const user = await User.findOne({ email: projectParam.owner }).exec();
     console.log('Values :', workspace, user);
